@@ -8,9 +8,7 @@ Jump to dodge the obstacles as they come. Ensure the player remains within the b
 
 Happy playing!
 ## Screenshots
-Start screen
-***
+#### Start screen #### 
 ![Start screen](https://raw.githubusercontent.com/pdlima1234/square-jump/main/screenshots/square-jump-start-screen.PNG)
-In-game play
-***
+#### In-game play #### 
 ![In-game play](https://raw.githubusercontent.com/pdlima1234/square-jump/main/screenshots/square-jump-in-game.PNG)
