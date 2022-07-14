@@ -1,0 +1,34 @@
+﻿  BallGame.c
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(56,20): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(57,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(88,37): warning C4244: 'function': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(89,60): warning C4244: 'function': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(89,73): warning C4244: 'function': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(90,3): warning C4244: 'function': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(91,37): warning C4244: 'function': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(91,46): warning C4244: 'function': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(91,55): warning C4244: 'function': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(93,44): warning C4244: 'function': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(94,46): warning C4244: 'function': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(108,2): warning C4244: 'function': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(171,56): warning C4244: 'function': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(241,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(263,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(223,45): warning C4101: 'y': unreferenced local variable
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(294,35): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(317,28): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(337,39): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(379,8): warning C4013: 'time' undefined; assuming extern returning int
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(385,32): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(387,36): warning C4244: 'function': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(387,60): warning C4244: 'function': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(388,50): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(391,36): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(394,44): warning C4244: 'function': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(396,50): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(375,50): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(446,58): warning C4244: 'function': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(451,68): warning C4244: 'function': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(457,68): warning C4244: 'function': conversion from 'double' to 'int', possible loss of data
+C:\Users\pdlim\source\repos\ProjectA\ProjectA\BallGame.c(463,68): warning C4244: 'function': conversion from 'double' to 'int', possible loss of data
+  ProjectA.vcxproj -> C:\Users\pdlim\source\repos\ProjectA\x64\Debug\ProjectA.exe
