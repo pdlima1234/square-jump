@@ -1,3 +1,5 @@
+# Square Jump
+
 ## How to play
 * Press S to start
 * Press SPACE to jump
