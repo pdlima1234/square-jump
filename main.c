@@ -86,7 +86,7 @@ void is_within_bounds(SDL_Rect* player_rect);
 
 int
 main(int argc, char* argv[]) {
-	
+
 	assert(SDL_Init(SDL_INIT_TIMER || SDL_INIT_VIDEO || SDL_INIT_EVENTS) == 0);
 	assert(TTF_Init() == 0);
 
@@ -102,10 +102,10 @@ main(int argc, char* argv[]) {
 	TTF_Font* level_font = TTF_OpenFont(FONT, LEVEL_SIZE);
 	TTF_Font* message_font = TTF_OpenFont(FONT, INSTRUCTION_SIZE);
 
-	SDL_Colour bg_colour = {0, 0, 0};
-	SDL_Colour font_colour = {0, 255, 0};
-	SDL_Colour player_colour = {0, 255, 0};
-	SDL_Colour floor_colour = {0, 0, 255};
+	SDL_Colour bg_colour = { 0, 0, 0 };
+	SDL_Colour font_colour = { 0, 255, 0 };
+	SDL_Colour player_colour = { 0, 255, 0 };
+	SDL_Colour floor_colour = { 0, 0, 255 };
 
 	SDL_Event event;
 
@@ -117,7 +117,7 @@ main(int argc, char* argv[]) {
 	assert((window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, W_WIDTH, W_HEIGHT, 0)) != NULL);
 	assert((renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED || SDL_RENDERER_PRESENTVSYNC)) != NULL);
 
-	
+
 	// Renders pre-game screen while `S` has not been pressed.
 	while (!s_was_pressed) {
 		if (!was_pre_play_rendered) {
@@ -147,27 +147,26 @@ main(int argc, char* argv[]) {
 			if (event.type == SDL_KEYDOWN) {
 				if (event.key.keysym.sym == SDLK_SPACE) {
 					jump(renderer, bg_rect, player_rect, floor_rect, bg_colour, player_colour, floor_colour, obstacles, event, window, level_font, font_colour);
-				}
-				else if (event.key.keysym.sym == SDLK_RIGHT) {
-					player_rect->x += player_speed;
-
-					colliding_obstacle(obstacles, renderer, bg_rect, player_rect, floor_rect, bg_colour, player_colour, floor_colour, event,
-						level_font, font_colour);
-
-					fall_width_x = fall(renderer, bg_rect, player_rect, floor_rect, bg_colour, player_colour, floor_colour, obstacles, event, window,
-						level_font, font_colour);
-					screen_scroll(player_rect, floor_rect, obstacles, FALSE, FALSE, renderer, player_colour);
-					render_in_play(renderer, bg_rect, player_rect, floor_rect, bg_colour, player_colour, floor_colour, obstacles, level_font, font_colour);
+					is_within_bounds(player_rect);
 				}
 				else if (event.key.keysym.sym == SDLK_ESCAPE) {
 					SDL_DestroyWindow(window);
 					exit(EXIT_SUCCESS);
 				}
-				is_within_bounds(player_rect);
 			}
 		}
+		
+		player_rect->x += player_speed;
+		colliding_obstacle(obstacles, renderer, bg_rect, player_rect, floor_rect, bg_colour, player_colour, floor_colour, event,
+			level_font, font_colour);
+
+		fall_width_x = fall(renderer, bg_rect, player_rect, floor_rect, bg_colour, player_colour, floor_colour, obstacles, event, window,
+			level_font, font_colour);
+		screen_scroll(player_rect, floor_rect, obstacles, FALSE, FALSE, renderer, player_colour);
+		render_in_play(renderer, bg_rect, player_rect, floor_rect, bg_colour, player_colour, floor_colour, obstacles, level_font, font_colour);
+			
 		is_within_bounds(player_rect);
-		colliding_obstacle(obstacles, renderer, bg_rect, player_rect, floor_rect, bg_colour, player_colour, floor_colour, event, 
+		colliding_obstacle(obstacles, renderer, bg_rect, player_rect, floor_rect, bg_colour, player_colour, floor_colour, event,
 			level_font, font_colour);
 		fall_width_x = fall(renderer, bg_rect, player_rect, floor_rect, bg_colour, player_colour, floor_colour, obstacles, event, window,
 			level_font, font_colour);
@@ -192,7 +191,7 @@ main(int argc, char* argv[]) {
 /* Bounds checking. */
 void
 is_within_bounds(SDL_Rect* player_rect) {
-	if (player_rect->x < 0 || player_rect->y < 0) {
+	if (player_rect->x < 0 || player_rect->y < -PLAYER_HEIGHT) {
 		is_alive = FALSE;
 	}
 }
@@ -201,7 +200,7 @@ is_within_bounds(SDL_Rect* player_rect) {
 /* Renders loss message. */
 void
 loss(SDL_Renderer* renderer, SDL_Colour bg_colour, SDL_Colour font_colour, TTF_Font* title_font) {
-	
+
 	int str_width, str_height;
 	SDL_Surface* s_game_over = TTF_RenderText_Solid(title_font, GAME_OVER, font_colour);
 	SDL_Texture* t_game_over = SDL_CreateTextureFromSurface(renderer, s_game_over);
@@ -209,7 +208,7 @@ loss(SDL_Renderer* renderer, SDL_Colour bg_colour, SDL_Colour font_colour, TTF_F
 	assert(TTF_SizeText(title_font, TITLE, &str_width, &str_height) == 0);
 	SDL_Rect* title_rect = get_rect((W_WIDTH - str_width) / 2, (W_HEIGHT - str_height) / 2,
 		str_width, str_height);
-	
+
 	SDL_SetRenderDrawColor(renderer, bg_colour.r, bg_colour.g, bg_colour.b, SDL_ALPHA_OPAQUE);
 	SDL_RenderClear(renderer);
 	SDL_RenderCopy(renderer, t_game_over, NULL, title_rect);
@@ -222,7 +221,7 @@ loss(SDL_Renderer* renderer, SDL_Colour bg_colour, SDL_Colour font_colour, TTF_F
 void
 screen_scroll(SDL_Rect* player_rect, SDL_Rect* floor_rect, SDL_Rect** obstacles, int is_jump, int is_auto, SDL_Renderer* renderer,
 	SDL_Colour player_colour) {
-	
+
 	double mid = W_WIDTH / 2;
 
 	// Screen scrolling triggered by user movement
@@ -375,7 +374,7 @@ fall(SDL_Renderer* renderer, SDL_Rect* bg_rect, SDL_Rect* player_rect, SDL_Rect*
 void
 jump(SDL_Renderer* renderer, SDL_Rect* bg_rect, SDL_Rect* player_rect, SDL_Rect* floor_rect, SDL_Colour bg_colour, SDL_Colour player_colour,
 	SDL_Colour floor_colour, SDL_Rect** obstacles, SDL_Event event, SDL_Window* window, TTF_Font* level_font, SDL_Colour font_colour) {
-	
+
 	double x = -HALF_JUMP_WIDTH, y, player_start_y = player_rect->y;
 
 	do {
@@ -387,7 +386,7 @@ jump(SDL_Renderer* renderer, SDL_Rect* bg_rect, SDL_Rect* player_rect, SDL_Rect*
 
 		player_rect->x += jump_speed;
 		player_rect->y = player_start_y - y - (JUMP_DILATION * pow(HALF_JUMP_WIDTH, 2));
-		
+
 		screen_scroll(player_rect, floor_rect, obstacles, TRUE, FALSE, renderer, player_colour);
 
 		render_in_play(renderer, bg_rect, player_rect, floor_rect, bg_colour, player_colour, floor_colour, obstacles, level_font, font_colour);
@@ -404,10 +403,10 @@ jump(SDL_Renderer* renderer, SDL_Rect* bg_rect, SDL_Rect* player_rect, SDL_Rect*
 				}
 			}
 		}
-		
+
 		SDL_Delay(DELAY_FACTOR);
 	} while (is_alive && (x < 0));
-	
+
 	if (is_alive) {
 		colliding_obstacle(obstacles, renderer, bg_rect, player_rect, floor_rect, bg_colour, player_colour, floor_colour, event, level_font, font_colour);
 		fall_width_x = fall(renderer, bg_rect, player_rect, floor_rect, bg_colour, player_colour, floor_colour, obstacles, event, window, level_font, font_colour);
@@ -460,7 +459,7 @@ get_obstacles(void) {
 				obstacle_width, obstacle_height);
 			prev_obstacle_x = obstacle_x + obstacle_width + OBSTACLE_SPACING;
 		}
-	
+
 		obstacles[i] = obstacle;
 	}
 
@@ -470,7 +469,7 @@ get_obstacles(void) {
 
 /* Renders in-game play. */
 void
-render_in_play(SDL_Renderer* renderer, SDL_Rect* bg_rect, SDL_Rect* player_rect, SDL_Rect* floor_rect, SDL_Colour bg_colour, SDL_Colour player_colour, 
+render_in_play(SDL_Renderer* renderer, SDL_Rect* bg_rect, SDL_Rect* player_rect, SDL_Rect* floor_rect, SDL_Colour bg_colour, SDL_Colour player_colour,
 	SDL_Colour floor_colour, SDL_Rect** obstacles, TTF_Font* level_font, SDL_Colour font_colour) {
 
 	int i, is_hole, level_width, level_height, int_width, int_height;
@@ -490,7 +489,7 @@ render_in_play(SDL_Renderer* renderer, SDL_Rect* bg_rect, SDL_Rect* player_rect,
 	SDL_Texture* t_level_int = SDL_CreateTextureFromSurface(renderer, s_level_int);
 	assert(TTF_SizeText(level_font, int_level, &int_width, &int_height) == 0);
 	SDL_Rect* level_int_rect = get_rect(level_width + (2 * int_width), (W_HEIGHT - level_height), int_width, int_height);
-	
+
 	SDL_SetRenderDrawColor(renderer, bg_colour.r, bg_colour.g, bg_colour.b, SDL_ALPHA_OPAQUE);
 	SDL_RenderFillRect(renderer, bg_rect);
 
@@ -512,7 +511,7 @@ render_in_play(SDL_Renderer* renderer, SDL_Rect* bg_rect, SDL_Rect* player_rect,
 	SDL_SetRenderDrawColor(renderer, font_colour.r, font_colour.g, font_colour.b, SDL_ALPHA_OPAQUE);
 	SDL_RenderCopy(renderer, t_level, NULL, level_rect);
 	SDL_RenderCopy(renderer, t_level_int, NULL, level_int_rect);
-	
+
 	SDL_RenderPresent(renderer);
 }
 
@@ -523,7 +522,7 @@ render_pre_play(SDL_Renderer* renderer, SDL_Rect* bg_rect, TTF_Font* title_font,
 	SDL_Colour bg_colour) {
 
 	int title_width, title_height, message_width, message_height;
-		
+
 	SDL_Surface* s_title = TTF_RenderText_Solid(title_font, TITLE, font_colour);
 	SDL_Texture* t_title = SDL_CreateTextureFromSurface(renderer, s_title);
 	assert(TTF_SizeText(title_font, TITLE, &title_width, &title_height) == 0);
@@ -541,20 +540,13 @@ render_pre_play(SDL_Renderer* renderer, SDL_Rect* bg_rect, TTF_Font* title_font,
 	SDL_Rect* instruction_2_rect = get_rect((W_WIDTH - message_width) / 2, instruction_1_rect->y + message_height,
 		message_width, message_height);
 
-	SDL_Surface* s_instruction_3 = TTF_RenderText_Solid(message_font, STR_INSTRUCTION_3, font_colour);
-	SDL_Texture* t_instruction_3 = SDL_CreateTextureFromSurface(renderer, s_instruction_3);
-	assert(TTF_SizeText(message_font, STR_INSTRUCTION_3, &message_width, &message_height) == 0);
-	SDL_Rect* instruction_3_rect = get_rect((W_WIDTH - message_width) / 2, instruction_2_rect->y + message_height,
-		message_width, message_height);
-
 	SDL_SetRenderDrawColor(renderer, bg_colour.r, bg_colour.g, bg_colour.b, SDL_ALPHA_OPAQUE);
 	SDL_RenderFillRect(renderer, bg_rect);
 
-	SDL_SetRenderDrawColor(renderer, font_colour.r, font_colour.g,font_colour.b, SDL_ALPHA_OPAQUE);
+	SDL_SetRenderDrawColor(renderer, font_colour.r, font_colour.g, font_colour.b, SDL_ALPHA_OPAQUE);
 	SDL_RenderCopy(renderer, t_title, NULL, title_rect);
 	SDL_RenderCopy(renderer, t_instruction_1, NULL, instruction_1_rect);
 	SDL_RenderCopy(renderer, t_instruction_2, NULL, instruction_2_rect);
-	SDL_RenderCopy(renderer, t_instruction_3, NULL, instruction_3_rect);
 
 	SDL_RenderPresent(renderer);
 }
