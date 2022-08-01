@@ -11,6 +11,6 @@ Happy playing!
 
 ## Screenshots
 #### Start screen #### 
-![Start screen](https://raw.githubusercontent.com/pdlima1234/square-jump/main/screenshots/square-jump-start-screen.PNG)
+![Start screen](start.PNG)
 #### In-game play #### 
-![In-game play](https://raw.githubusercontent.com/pdlima1234/square-jump/main/screenshots/square-jump-in-game.PNG)
+![In-game play](play.PNG)
