@@ -3,7 +3,6 @@
 ## How to play
 * Press S to start
 * Press SPACE to jump
-* Press RIGHT ARROW KEY to move forward
 
 ## Rules of the game
 Jump to dodge the obstacles as they come. Ensure the player remains within the bounds of the frame.
